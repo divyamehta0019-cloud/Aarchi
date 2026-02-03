@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <title>For My Chand ❤️</title>
 
@@ -13,46 +13,50 @@ body{
   margin:0;
   height:100vh;
   overflow:hidden;
-  font-family:'Quicksand',sans-serif;
+  font-family:Poppins,sans-serif;
   display:flex;
   justify-content:center;
   align-items:center;
+
+  /* soft romantic gradient only */
+  background:linear-gradient(135deg,#ff9acb,#b28dff);
   color:white;
 }
 
-/* 💗 dreamy gradient + photo */
-.bg{
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(135deg,#ff9acb88,#b28dff88),
-    url("aarchi.jpg") center/cover no-repeat;
-  filter:blur(3px);
-  z-index:-2;
-}
-
-/* glass card */
+/* card */
 .card{
-  background:rgba(255,255,255,0.22);
-  backdrop-filter:blur(16px);
-  padding:30px 25px 95px;
-  border-radius:30px;
+  background:rgba(255,255,255,0.18);
+  backdrop-filter:blur(12px);
+  padding:30px 25px 100px;
+  border-radius:28px;
   text-align:center;
-  width:88%;
-  max-width:360px;
-  box-shadow:0 25px 60px rgba(255,100,150,.4);
+  width:90%;
+  max-width:350px;
+  box-shadow:0 20px 50px rgba(0,0,0,.35);
   position:relative;
 }
 
+/* centered photo */
+.photo{
+  width:180px;
+  height:180px;
+  border-radius:20px;
+  object-fit:cover;
+  margin:0 auto 18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+/* text */
 h1{
-  font-size:22px;
+  font-size:20px;
   line-height:1.6;
+  margin-bottom:15px;
 }
 
 /* buttons */
 .btns{
   position:absolute;
-  bottom:25px;
+  bottom:20px;
   width:100%;
   display:flex;
   justify-content:space-evenly;
@@ -71,7 +75,7 @@ button{
 
 #result{
   display:none;
-  margin-top:15px;
+  margin-top:10px;
   font-size:14px;
 }
 
@@ -90,9 +94,10 @@ button{
 
 <body>
 
-<div class="bg"></div>
-
 <div class="card">
+
+<!-- ❤️ PHOTO IN CENTER -->
+<img src="aarchi.jpg" class="photo">
 
 <h1>
 Aarchi Mehta ❤️<br>
@@ -106,8 +111,7 @@ Thank you for being my happiness, my peace and my strength.
 I’m truly grateful for everything you do for me Chand ❤️
 </p>
 
-<!-- ✅ YOUR OLD WORKING GIF STYLE -->
-<img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" width="200">
+<img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" width="180">
 </div>
 
 <div class="btns">
@@ -117,7 +121,7 @@ I’m truly grateful for everything you do for me Chand ❤️
 
 </div>
 
-<audio id="music" loop>
+<audio id="music" autoplay loop>
 <source src="perfect.mp3">
 </audio>
 
@@ -127,21 +131,31 @@ const no=document.getElementById("no");
 const result=document.getElementById("result");
 const music=document.getElementById("music");
 
-/* hearts */
+/* ❤️ try autoplay immediately */
+window.addEventListener("load", ()=>{
+  music.play().catch(()=>{});
+});
+
+/* ❤️ fallback: first tap starts music */
+document.body.addEventListener("click", ()=>{
+  music.play();
+},{once:true});
+
+/* floating hearts */
 setInterval(()=>{
  const h=document.createElement("div");
  h.className="heart";
- h.innerHTML="💖";
+ h.innerHTML="❤️";
  h.style.left=Math.random()*100+"vw";
  h.style.fontSize=(18+Math.random()*22)+"px";
  document.body.appendChild(h);
  setTimeout(()=>h.remove(),6000);
-},300);
+},350);
 
 /* NO moves far */
 function moveNo(){
-  const x=(Math.random()*140-70);
-  no.style.transform=`translateX(${x}px)`;
+ const x=Math.random()*150-75;
+ no.style.transform=`translateX(${x}px)`;
 }
 no.onclick=moveNo;
 no.ontouchstart=moveNo;
